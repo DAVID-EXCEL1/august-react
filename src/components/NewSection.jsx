@@ -2,19 +2,23 @@ import React, { useState } from 'react'
 
 const NewSection = () => {
     // const [nameoftheVariable, setnameoftheVariable] = useState("initialvalue")
+    // const [myAge, setmyAge] = useState(25)
+
     const [myAge, setmyAge] = useState(25)
+    const [myName, setmyName] = useState("David Excel")
 
-
-    let myName = "David Excel";
+    // let myName = "David Excel";
     let myProfession = "Software Developer";
     // let myAge = 25;
 
-    // const increaseAge = () => {
+    const increaseAge = () => {
         // myAge++;
         // console.log(`I am ${myAge} today`);
         // document.getElementById("show2").innerHTML = `I am ${myAge} today`;
         // let newAge = myAge++
-
+        setmyAge(myAge + 1)
+        console.log(myAge);
+        
         // setmyAge(myAge + 1);
         // console.log(`I am ${myAge} today`);
         // console.log(myAge); 
@@ -23,7 +27,7 @@ const NewSection = () => {
 
         
 
-    // }
+    }
 
     const clickMe = (num) => {
         let display = `${num} is already here`
@@ -37,7 +41,7 @@ const NewSection = () => {
                 <h1>My name {myName}</h1>
                 <h2>I am a {myProfession}</h2>
                 <h3>I am {myAge} years old</h3>
-                <button onClick={() => setmyAge(myAge + 1)} className='btn my-3 btn-outline-secondary w-25 mx-auto'>My Birthday</button>
+                <button onClick={increaseAge} className='btn my-3 btn-outline-secondary w-25 mx-auto'>My Birthday</button>
                 <button onClick={()=>clickMe(12)} className='btn btn-outline-secondary w-25 mx-auto'>Check</button>
                 <div id="show"></div>
                 <div id="show2"></div>
