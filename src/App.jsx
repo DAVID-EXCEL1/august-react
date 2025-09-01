@@ -6,7 +6,8 @@ import React from 'react'
 // import Work from './components/Work'
 import './App.css'
 // import NewSection from './components/NewSection'
-import Signup from './components/Signup'
+// import Signup from './components/Signup'
+import Products from './components/Products'
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
       <Cardsection/>
       <Footer/> */}
       {/* <NewSection/> */}
-      <Signup/>
+      {/* <Signup/> */}
+      <Products/>
     </>
   )
 }
