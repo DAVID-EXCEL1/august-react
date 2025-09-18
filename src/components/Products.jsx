@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Trash2, Edit, ShoppingCart } from "lucide-react";
+import { useEffect, useState } from 'react'
+import { Trash2, Edit, ShoppingBasket } from "lucide-react";
 
 const Products = () => {
     const [productName, setProductName] = useState('')
@@ -9,8 +9,6 @@ const Products = () => {
     const [allProducts, setAllProducts] = useState([])
     const [editedIndex, setEditedIndex] = useState(null)
 
-    
-
     const addOrUpdateProduct = () => {
         let newProduct = { productName, productPrice, productDescription, productImage };
 
@@ -19,11 +17,18 @@ const Products = () => {
             let updatedProducts = [...allProducts];
             updatedProducts[editedIndex] = newProduct;
             setAllProducts(updatedProducts);
+            localStorage.setItem("products", JSON.stringify(updatedProducts));
         } else {
             // Add new product
             setAllProducts([...allProducts, newProduct]);
+            localStorage.setItem("products", JSON.stringify([...allProducts, newProduct]));
         }
-
+        // Clear input fields
+        setProductName('');
+        setProductPrice('');
+        setProductDescription('');
+        setProductImage('');
+        setEditedIndex(null);
     };
 
 
@@ -33,7 +38,7 @@ const Products = () => {
         let newAllProducts = [...allProducts];
         newAllProducts.splice(index, 1);
         setAllProducts(newAllProducts);
-
+        localStorage.setItem("products", JSON.stringify(newAllProducts));
     };
 
     const editProduct = (index) => {
@@ -47,9 +52,9 @@ const Products = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-blue-50 to-white">
-            <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md" style={{ padding: "20px" }}>
+            <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg" style={{ padding: "20px" }}>
                 <div className="flex items-center justify-center gap-2 mb-6">
-                    <ShoppingCart className='text-blue-600 fw-bold' />
+                    <ShoppingBasket className='text-blue-600 fw-bold' />
                     <h1 className="text-2xl font-bold text-blue-700">Mini Mart</h1>
                 </div>
 
@@ -98,31 +103,35 @@ const Products = () => {
                 {allProducts.length === 0 ? (
                     <p className="text-center mt-5 text-gray-500">No products added yet.</p>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {allProducts.map((product, index) => (
-                            <div
-                                key={index}
-                                className="bg-white shadow-lg rounded-2xl p-5 flex flex-col items-center text-center hover:shadow-xl transition"
-                                style={{ marginTop: "20px", padding: "10px 0px" }}>
-                                <img
-                                    src={product.productImage}
-                                    alt={product.productName}
-                                    className="w-32 h-32 object-cover rounded-md mb-4"
-                                />
-                                <h2 className="text-lg font-semibold mb-2">{product.productName}</h2>
-                                <p className="text-gray-600 mb-1">₦{product.productPrice}</p>
-                                <p className="text-sm text-gray-500 mb-4">{product.productDescription}</p>
+                    <div>
 
-                                <div className="flex gap-3">
-                                    <button className="p-2 text-red-500 rounded-lg hover:bg-red-600" onClick={() => deleteProduct(index)}>
-                                        <Trash2 size={20} />
-                                    </button>
-                                    <button className="p-2 text-blue-500 rounded-lg hover:bg-blue-600" onClick={() => editProduct(index)}>
-                                        <Edit size={20} />
-                                    </button>
+                        <h1 className="text-2xl font-bold text-center mt-5">All Products</h1>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            {allProducts.map((product, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white shadow-lg rounded-2xl p-5 flex flex-col items-center text-center hover:shadow-xl transition"
+                                    style={{ marginTop: "20px", padding: "10px 0px" }}>
+                                    <img
+                                        src={product.productImage}
+                                        alt={product.productName}
+                                        className="w-32 h-32 object-cover rounded-md mb-4"
+                                    />
+                                    <h2 className="text-lg font-semibold mb-2">{product.productName}</h2>
+                                    <p className="text-gray-600 mb-1">₦{product.productPrice}</p>
+                                    <p className="text-sm text-gray-500 mb-4">{product.productDescription}</p>
+
+                                    <div className="flex gap-3">
+                                        <button className="p-2 text-red-500 rounded-lg hover:bg-red-600" onClick={() => deleteProduct(index)}>
+                                            <Trash2 size={20} />
+                                        </button>
+                                        <button className="p-2 text-blue-500 rounded-lg hover:bg-blue-600" onClick={() => editProduct(index)}>
+                                            <Edit size={20} />
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
