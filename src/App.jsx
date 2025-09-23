@@ -15,21 +15,26 @@ import Service from './pages/Service'
 import Notfound from './pages/Notfound'
 import Api from './pages/Api'
 import Signin from './pages/Signin'
+import Formik from './pages/Formik'
+import Form from './pages/Form'
 
 const App = () => {
+  let token = localStorage.token
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Herosection />} />
+        <Route path='/' element={token?<Herosection />:<Navigate to="/signin"/>} />
         <Route path='/my-about' element={<About />} />
         <Route path='/about' element={<Navigate to="/my-about" />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/service' element={<Service />} />
-        <Route path='*' element={<Notfound/>}/>
-        <Route path='/api' element={<Api/>}/>
+        <Route path='*' element={<Notfound />} />
+        <Route path='/api' element={<Api />} />
+        <Route path='/formik' element={<Formik />} />
+        <Route path='/form' element={<Form />} />
         <Route />
       </Routes>
 

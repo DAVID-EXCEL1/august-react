@@ -15,6 +15,7 @@ const Signin = () => {
 
                 if (res.data.message === "Login successful") {
                     alert("Welcome back!");
+                    localStorage.token = res.data.user.token
                     // Redirect only when confirmed
                     navigate("/");
                 } else {

@@ -19,7 +19,7 @@ const Signup = () => {
                 console.log("Response:", res.data);
                 alert("Signup successful! Please login.");
 
-                // Save to local state for preview (optional)
+                    // Save to local state for preview (optional)
                 setAllUsers([...allUsers, newUser]);
                 navigate("/signin");
             })
