@@ -8,7 +8,7 @@ const Navbar = () => {
             <nav style={{backgroundColor: `#008080`, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 200px"}}>
                 <img src={myImage} alt=""/>
                 <ul style={{color:"white", listStyle:"none"}}>
-                    <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/"> Home</Link></li>
+                    <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/dashboard"> Home</Link></li>
                 <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/about"> About</Link></li>
                     <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/contact"> Contact</Link></li>
                     <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/service"> Service</Link></li>
