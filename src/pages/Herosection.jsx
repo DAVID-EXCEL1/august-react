@@ -3,11 +3,13 @@ import myHero from "../assets/header.png"
 import PropsBtn from '../components/PropsBtn'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment, decrement,incrementByAmount   } from '../redux/counterSlice'
 
 const Herosection = () => {
-    let count = useSelector(state => state.counterReducer.count)
-    useSelector(function (state) { return state })
+    let dispatch = useDispatch()
+    let count = useSelector(state => state.counterReducer.counter)
+    // useSelector(function (state) { return state })
         console.log(count);
     let navigate = useNavigate()
     useEffect(() => {
@@ -63,7 +65,10 @@ const Herosection = () => {
             <PropsBtn title="Edit" color="btn btn-primary" test={test} />
             <PropsBtn title="Delete" color="btn btn-danger" test={test1} />
             <PropsBtn title="Rusticate" color="btn btn-success" test={test2} />
-
+            <h3>{count}</h3>
+        <button onClick={() => dispatch(increment())}>Increase</button>
+        <button onClick={() => dispatch(decrement())}>Decrease</button>
+        <button onClick={() => dispatch(incrementByAmount(20))}>Increase by 20</button>
         </>
     )
 }
