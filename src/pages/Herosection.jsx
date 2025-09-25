@@ -16,7 +16,7 @@ const Herosection = () => {
         getDashboard()
     }, [])
     let token = localStorage.token
-    let url = "http://localhost:3201/user/dashboard"
+    let url = "https://node-to-render.onrender.com/user/dashboard"
     const getDashboard = () => {
         axios.get(url, {
             headers: {
