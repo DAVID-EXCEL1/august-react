@@ -14,6 +14,8 @@ const Navbar = () => {
                     <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/service"> Service</Link></li>
                     <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/api"> API</Link></li>
                     <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/form"> Form</Link></li>
+                    <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/signup"> Signup</Link></li>
+                    <li style={{display: "inline-block", marginLeft: "140px"}}><Link to="/signin"> Signin</Link></li>
                 </ul>
             </nav>
         </>
